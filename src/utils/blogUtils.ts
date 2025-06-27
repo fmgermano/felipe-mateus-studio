@@ -1,17 +1,16 @@
 
-import matter from 'gray-matter';
 import { BlogPost, BlogPostFrontmatter } from '../types/blog';
 
 // Sample blog posts data - in a real app, these would be loaded from markdown files
 const blogPostsData = [
   {
     slug: 'everyday-inspiration',
-    frontmatter: `---
-title: "Finding Inspiration in Everyday Moments"
-date: "2024-01-20"
-excerpt: "How I learned to see artistic potential in mundane city scenes and daily routines."
-tags: ["art", "inspiration", "process"]
----`,
+    frontmatter: {
+      title: "Finding Inspiration in Everyday Moments",
+      date: "2024-01-20",
+      excerpt: "How I learned to see artistic potential in mundane city scenes and daily routines.",
+      tags: ["art", "inspiration", "process"]
+    },
     content: `# Finding Inspiration in Everyday Moments
 
 As artists, we often search for the extraordinary, the perfect light, the dramatic landscape. But some of my most meaningful work has come from the ordinary moments that surround us daily.
@@ -37,12 +36,12 @@ The extraordinary is often hiding in plain sight, waiting for us to slow down en
   },
   {
     slug: 'modern-css-layouts',
-    frontmatter: `---
-title: "Modern CSS Layout Techniques"
-date: "2024-01-08"
-excerpt: "Exploring CSS Grid, Flexbox, and Container Queries for responsive web design."
-tags: ["dev", "css", "frontend"]
----`,
+    frontmatter: {
+      title: "Modern CSS Layout Techniques",
+      date: "2024-01-08",
+      excerpt: "Exploring CSS Grid, Flexbox, and Container Queries for responsive web design.",
+      tags: ["dev", "css", "frontend"]
+    },
     content: `# Modern CSS Layout Techniques
 
 CSS has evolved dramatically in recent years, giving us powerful tools for creating responsive layouts that adapt to any screen size. Let's explore the modern approaches that have revolutionized how we build for the web.
@@ -98,12 +97,12 @@ The modern CSS layout toolkit gives us unprecedented control over how our conten
   },
   {
     slug: 'digital-vs-traditional',
-    frontmatter: `---
-title: "Digital vs Traditional: A Personal Journey"
-date: "2024-01-12"
-excerpt: "Exploring the unique qualities and challenges of both digital and traditional art mediums."
-tags: ["art", "digital", "traditional"]
----`,
+    frontmatter: {
+      title: "Digital vs Traditional: A Personal Journey",
+      date: "2024-01-12", 
+      excerpt: "Exploring the unique qualities and challenges of both digital and traditional art mediums.",
+      tags: ["art", "digital", "traditional"]
+    },
     content: `# Digital vs Traditional: A Personal Journey
 
 After years of working in both digital and traditional mediums, I've learned that the choice between them isn't about which is "better"—it's about understanding what each medium offers and when to use them.
@@ -138,17 +137,14 @@ The tools are just tools. The art is in knowing how to use them.`
 
 export const getBlogPosts = (): BlogPost[] => {
   return blogPostsData.map(post => {
-    const { data, content } = matter(post.frontmatter + '\n\n' + post.content);
-    const frontmatter = data as BlogPostFrontmatter;
-    
     return {
       slug: post.slug,
-      title: frontmatter.title,
-      date: frontmatter.date,
-      excerpt: frontmatter.excerpt,
-      tags: frontmatter.tags,
-      content: content,
-      readingTime: calculateReadingTime(content)
+      title: post.frontmatter.title,
+      date: post.frontmatter.date,
+      excerpt: post.frontmatter.excerpt,
+      tags: post.frontmatter.tags,
+      content: post.content,
+      readingTime: calculateReadingTime(post.content)
     };
   });
 };
