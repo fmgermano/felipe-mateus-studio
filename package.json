@@ -9,6 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "homepage": "https://fmgermano.github.io/felipe-mateus-studio",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
 
