@@ -13,13 +13,14 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+const basename = import.meta.env.MODE === 'production' ? '/felipe-mateus-studio' : '/';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-        <BrowserRouter basename="/felipe-mateus-studio">
+        <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dev" element={<Dev />} />
