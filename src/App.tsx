@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,14 +12,15 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-const basename = import.meta.env.MODE === 'production' ? '/felipe-mateus-studio' : '/';
+//onst basename = import.meta.env.MODE === 'production' ? '/felipe-mateus-studio' : '/';
+const basename = "/";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-        <BrowserRouter basename={basename}>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dev" element={<Dev />} />
