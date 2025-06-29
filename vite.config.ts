@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
   // base: mode === 'production' ? '/felipe-mateus-studio/' : '/', // ESSENCIAL
-  base: "/", // ESSENCIAL
+  base: "", // ESSENCIAL
   server: {
     host: "::",
     port: 8080,
